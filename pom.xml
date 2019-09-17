@@ -6,11 +6,14 @@
 
     <groupId>com.visitor</groupId>
     <artifactId>visitor</artifactId>
-    <version>${package.version}</version>
+    <packaging>war</packaging>
+    <version>1.0</version>
+    <name>spring-tomcat-sample Maven Webapp</name>
 
     <properties>
         <spring.version>5.1.9.RELEASE</spring.version>
         <package.version>1.0</package.version>
+        <servlet.version>4.0.0</servlet.version>
     </properties>
     <dependencies>
         <!-- Spring dependencies-->
@@ -29,6 +32,46 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- Spring web dependencies-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl-api</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <finalName>spring-tomcat-sample</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>default-war</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
