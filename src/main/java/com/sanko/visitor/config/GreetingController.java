@@ -12,4 +12,10 @@ public class GreetingController {
         model.addAttribute("name", name);
         return "greeting";
     }
+
+    @GetMapping("/")
+    public String greeting(Model model){
+        model.addAttribute("text", "start page");
+        return "index";
+    }
 }
