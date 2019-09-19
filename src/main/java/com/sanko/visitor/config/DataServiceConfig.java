@@ -1,9 +1,9 @@
 package com.sanko.visitor.config;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -11,17 +11,16 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.sanko.visitor")
+@EnableJpaRepositories(basePackages = "com.sanko.visitor.repositories")
 public class DataServiceConfig {
     @Bean
-    public DataSource dataSource(){
-        BasicDataSource dataSource = new BasicDataSource();
+    public DriverManagerDataSource dataSource(){
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/visitor");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/visitor?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("admin");
         return dataSource;
@@ -30,7 +29,7 @@ public class DataServiceConfig {
     @Bean
     public Properties hibernateProperties(){
         Properties hibernateProp = new Properties();
-        hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         hibernateProp.put("hibernate.hbm2ddl.auto", "create");
         hibernateProp.put("hibernate.show_sql", true);
         hibernateProp.put("hibernate.max_fetch_depth", 3);
