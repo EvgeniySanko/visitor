@@ -17,7 +17,9 @@
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
         <dbConnector.version>8.0.11</dbConnector.version>
         <jpa.version>2.1.10.RELEASE</jpa.version>
-        <dbcp.version>2.7.0</dbcp.version>
+        <persistence.version>2.2</persistence.version>
+        <dataSource.version>2.7.0</dataSource.version>
+        <hibernate.version>5.4.5.Final</hibernate.version>
     </properties>
     <dependencies>
         <!-- Spring dependencies-->
@@ -65,20 +67,28 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${dbConnector.version}</version>
         </dependency>
+        <!-- JPA -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${jpa.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-dbcp2</artifactId>
-            <version>${dbcp.version}</version>
-        </dependency>
-        <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
+            <version>${persistence.version}</version>
+        </dependency>
+        <!-- DataSource -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${dataSource.version}</version>
+        </dependency>
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
     </dependencies>
 
