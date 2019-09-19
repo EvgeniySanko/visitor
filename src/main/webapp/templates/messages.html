@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form method="post">
+        <input type="text" name="text" placeholder="Введите сообщение"/>
+        <input type="text" name="tag" placeholder="Тэг"/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<!--/*@thymesVar id="messages" type="java.util.List"*/-->
+<!--<div th:each="message : ${messages}">Список сообщений</div>
+<div>
+    <b th:text="message.id"/>
+    <span th:text="message.text"/>
+    <i th:text="message.tag"/>
+</div>-->
+</body>
+</html>
