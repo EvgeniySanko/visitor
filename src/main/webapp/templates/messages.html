@@ -12,12 +12,18 @@
         <button type="submit">Добавить</button>
     </form>
 </div>
-<!--/*@thymesVar id="messages" type="java.util.List"*/-->
-<!--<div th:each="message : ${messages}">Список сообщений</div>
 <div>
-    <b th:text="message.id"/>
-    <span th:text="message.text"/>
-    <i th:text="message.tag"/>
-</div>-->
+    <form method="post" action="filter">
+        <input type="text" name="tag" placeholder="Введите тэг"/>
+        <button type="submit">Фильтровать</button>
+    </form>
+</div>
+<!--/*@thymesVar id="messages" type="java.util.List"*/-->
+<div>Список сообщений</div>
+<div th:each="message : ${messages}">
+    <b th:text="${message.id}"/>
+    <span th:text="${message.text}"/>
+    <span th:text="${message.tag}"/>
+</div>
 </body>
 </html>
