@@ -20,7 +20,7 @@ public class DataServiceConfig {
     public DriverManagerDataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/visitor?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/visitor?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
         dataSource.setUsername("root");
         dataSource.setPassword("admin");
         return dataSource;
@@ -30,7 +30,7 @@ public class DataServiceConfig {
     public Properties hibernateProperties(){
         Properties hibernateProp = new Properties();
         hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-        hibernateProp.put("hibernate.hbm2ddl.auto", "create");
+        hibernateProp.put("hibernate.hbm2ddl.auto", "update");
         hibernateProp.put("hibernate.show_sql", true);
         hibernateProp.put("hibernate.max_fetch_depth", 3);
         hibernateProp.put("hibernate.jdbc.batch_size", 10);
