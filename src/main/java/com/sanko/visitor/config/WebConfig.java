@@ -12,7 +12,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = "com.sanko.visitor")
+@ComponentScan(basePackages = "com.sanko.visitor.controllers")
 public class WebConfig extends AnnotationConfigWebApplicationContext {
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
@@ -20,6 +20,7 @@ public class WebConfig extends AnnotationConfigWebApplicationContext {
         templateResolver.setPrefix("templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
 

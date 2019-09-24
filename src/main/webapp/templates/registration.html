@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+</head>
+<body>
+    Registration
+    <span th:if="${userExist}">User is exist!</span>
+    <form action="/registration" method="post">
+        <div><label>User name: <input type="text" name="userName"/></label></div>
+        <div><label>User password: <input type="text" name="password"/></label></div>
+        <div><input type="submit" value="Sign up"></div>
+    </form>
+</body>
+</html>

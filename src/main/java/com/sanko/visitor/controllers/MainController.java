@@ -1,4 +1,4 @@
-package com.sanko.visitor.config;
+package com.sanko.visitor.controllers;
 
 import com.sanko.visitor.entities.Message;
 import com.sanko.visitor.repositories.MessageRepo;
@@ -13,36 +13,29 @@ import java.util.List;
 
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private MessageRepo messageRepo;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model){
-        model.addAttribute("name", name);
+    @GetMapping("/")
+    public String greeting(Model model){
         return "greeting";
     }
 
-    @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("text", "start page");
-        return "index";
-    }
-
-    @GetMapping("/messages")
+    @GetMapping("/main")
     public String messages(Model model){
         Iterable<Message> messages = messageRepo.findAll();
         model.addAttribute("messages", messages);
-        return "messages";
+        return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Model model){
         Message message = new Message(text, tag);
         messageRepo.save(message);
         Iterable<Message> messages = messageRepo.findAll();
         model.addAttribute("messages", messages);
-        return "messages";
+        return "main";
     }
 
     @PostMapping("/filter")
@@ -54,6 +47,6 @@ public class GreetingController {
             messages = (List<Message>) messageRepo.findAll();
         }
         model.addAttribute("messages", messages);
-        return "messages";
+        return "main";
     }
 }
