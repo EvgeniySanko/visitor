@@ -5,10 +5,11 @@
 </head>
 <body>
     Registration
-    <span th:if="${userExist}">User is exist!</span>
+    <span th:if="${message}">User is exists!</span>
     <form action="/registration" method="post">
-        <div><label>User name: <input type="text" name="userName"/></label></div>
+        <div><label>User name: <input type="text" name="username"/></label></div>
         <div><label>User password: <input type="text" name="password"/></label></div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div><input type="submit" value="Sign up"></div>
     </form>
 </body>
