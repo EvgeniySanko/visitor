@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head"></head>
+<body>
+<div th:insert="~{fragments/common :: scripts}"></div>
+<div th:replace="fragments/common :: navbar"></div>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <!--/*@thymesVar id="user" type="com.sanko.visitor.entities.User"*/-->
+            <td th:text="${user.username}"></td>
+            <td><span th:each="role, index : ${user.getRoles()}" th:text="!${index.last} ? ${role} + ', ' : ${role}"></span></td>
+            <td><a href="/user" th:attr="href='/user/' + ${user.id}">edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -12,9 +12,11 @@
 
     <properties>
         <spring.version>5.1.9.RELEASE</spring.version>
+        <springContextSupport.version>5.2.0.RELEASE</springContextSupport.version>
         <package.version>1.0</package.version>
         <servlet.version>4.0.0</servlet.version>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
+        <thymeleafSecurity.version>3.0.4.RELEASE</thymeleafSecurity.version>
         <dbConnector.version>8.0.11</dbConnector.version>
         <jpa.version>2.1.10.RELEASE</jpa.version>
         <persistence.version>2.2</persistence.version>
@@ -38,6 +40,11 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${springContextSupport.version}</version>
+        </dependency>
         <!-- Spring web dependencies-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -60,6 +67,11 @@
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf</artifactId>
             <version>${thymeleaf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>${thymeleafSecurity.version}</version>
         </dependency>
         <!-- DataBase -->
         <dependency>

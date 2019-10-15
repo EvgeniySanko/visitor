@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login</title>
-</head>
+<head th:replace="fragments/common :: head"></head>
 <body>
-    Login page</br>
-    <form action="/login" method="post">
-        <div><label>User name: <input type="text" name="username"/></label></div>
-        <div><label>User password: <input type="text" name="password"/></label></div>
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <div><input type="submit" value="Sign In"></div>
-    </form></br>
+<div th:insert="~{fragments/common :: scripts}"></div>
+<div th:replace="fragments/common :: navbar"></div>
+<div class="container mt-5">
+    <div th:replace="fragments/login :: login(path=${'/login'}, submitValue=${'Sign in'})"></div></br>
     <a href="/registration">Sign up</a>
+</div>
 </body>
 </html>
