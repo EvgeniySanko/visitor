@@ -1,5 +1,6 @@
 package com.sanko.visitor.config;
 
+import com.sanko.visitor.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -57,6 +58,11 @@ public class DataServiceConfig {
         factoryBean.setJpaProperties(hibernateProperties());
         factoryBean.afterPropertiesSet();
         return factoryBean.getNativeEntityManagerFactory();
+    }
+
+    @Bean
+    public UserService userService(){
+        return new UserService();
     }
 
 }
