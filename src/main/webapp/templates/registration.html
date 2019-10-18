@@ -6,7 +6,7 @@
 <div th:replace="fragments/common :: navbar"></div>
 <div class="container mt-5">
     <div class="mb-1">Registration</div>
-    <span th:if="${message}">User is exists!</span>
+    <span th:if="${message}" th:text="${message}"></span>
     <div th:replace="fragments/login :: login(path=${'/registration'}, submitValue=${'Sign up'})"></div>
 </div>
 </body>

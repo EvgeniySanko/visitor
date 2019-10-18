@@ -10,4 +10,6 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     @Override
     Optional<User> findById(Long aLong);
+
+    User findByActivationCode(String code);
 }
