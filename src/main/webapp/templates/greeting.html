@@ -6,7 +6,12 @@
 <div th:insert="~{fragments/common :: scripts}"></div>
 <div th:replace="fragments/common :: navbar"></div>
 <div class="container mt-5">
-    <h5>Hello, <span sec:authentication="name"/></h5>
+    <div sec:authorize="isAuthenticated()">
+        <h5>Hello, <span sec:authentication="name"></span></h5>
+    </div>
+    <div sec:authorize="!isAuthenticated()">
+        <h5>Hello, guest</h5>
+    </div>
     <div>This is a simple clone of Twitter</div>
 </div>
 </body>

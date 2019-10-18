@@ -1,7 +1,9 @@
 package com.sanko.visitor.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -14,15 +16,25 @@ import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
 @Configuration
+@PropertySource("classpath:database.properties")
 @EnableJpaRepositories(basePackages = "com.sanko.visitor.repositories")
 public class DataServiceConfig {
+    @Value("${driver}")
+    private String driver;
+    @Value("${URL}")
+    private String URL;
+    @Value("${dbUsername}")
+    private String username;
+    @Value("${dbPassword}")
+    private String password;
+
     @Bean
     public DriverManagerDataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/visitor?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
-        dataSource.setUsername("root");
-        dataSource.setPassword("admin");
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(URL);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         return dataSource;
     }
 

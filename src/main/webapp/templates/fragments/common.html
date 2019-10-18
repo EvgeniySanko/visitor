@@ -34,7 +34,7 @@
                 </li>
             </ul>
             <div sec:authentication="name" class="navbar-text mr-3"></div>
-            <div th:insert="~{fragments/login :: logout}"></div>
+            <div sec:authorize="isAuthenticated()" th:insert="~{fragments/login :: logout}"></div>
         </div>
     </nav>
 </div>
