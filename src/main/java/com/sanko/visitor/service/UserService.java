@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.Collections;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -35,13 +35,7 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
 
         if (!StringUtils.isEmpty(user.getEmail())){
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to Visitor. Please visit next link: http://localhost:8080/activate/%s",
-                    user.getUsername(),
-                    user.getActivationCode()
-            );
-            mailSender.send(user.getEmail(), "Activation code", message);
+            sendMessage(user);
         }
         return true;
     }
@@ -54,5 +48,60 @@ public class UserService implements UserDetailsService {
         user.setActivationCode(null);
         userRepo.save(user);
         return true;
+    }
+
+    public List<User> findAll() {
+        return userRepo.findAll();
+    }
+
+    public Optional<User> findById(Long userId) {
+        return userRepo.findById(userId);
+    }
+
+    public void saveUser(String username, Map<String, String> form, Long userId) {
+        User user = userRepo.findById(userId).get();
+        user.setUsername(username);
+        Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
+
+        user.getRoles().clear();
+
+        for (String key : form.keySet()) {
+            if (roles.contains(key)){
+                user.getRoles().add(Role.valueOf(key));
+            }
+        }
+        userRepo.save(user);
+    }
+
+    public void updateProfile(User user, String password, String email) {
+        String userEmail = user.getEmail();
+        if (userEmail == null){
+            userEmail = "";
+        }
+
+        if (!StringUtils.isEmpty(password)){
+            user.setPassword(password);
+        }
+
+        boolean isEmailChanged = (email != null) && (!email.equals(userEmail));
+
+        if (isEmailChanged){
+            if (!StringUtils.isEmpty(email)){
+                user.setActivationCode(UUID.randomUUID().toString());
+                user.setEmail(email);
+                sendMessage(user);
+            }
+        }
+        userRepo.save(user);
+    }
+
+    private void sendMessage(User user){
+        String message = String.format(
+                "Hello, %s! \n" +
+                        "Welcome to Visitor. Please visit next link: http://localhost:8080/activate/%s",
+                user.getUsername(),
+                user.getActivationCode()
+        );
+        mailSender.send(user.getEmail(), "Activation code", message);
     }
 }
