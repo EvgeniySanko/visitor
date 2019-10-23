@@ -1,22 +1,31 @@
 <div th:fragment="login(path, submitValue)" xmlns:th="http://www.thymeleaf.org">
     <form action="/login" method="post" th:attr="action=${path}">
-        <span th:if="${message}" th:text="${message}"></span>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">User name:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="username" placeholder="User name"/>
+                <input type="text" class="form-control" th:classappend="${usernameError} ? ' is-invalid'" name="username" th:value="${user} ? ${user.username} : ''" placeholder="User name"/>
+                <div th:if="${usernameError}" class="invalid-feedback" th:text="${usernameError}"></div>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Password:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="password" placeholder="Password"/>
+                <input type="text" class="form-control" th:classappend="${passwordError} ? ' is-invalid'" name="password" placeholder="Password"/>
+                <div th:if="${passwordError}" class="invalid-feedback" th:text="${passwordError}"></div>
+            </div>
+        </div>
+        <div class="form-group row" th:if="${path} == '/registration'">
+            <label class="col-sm-2 col-form-label">Retype password:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:classappend="${password2Error} ? ' is-invalid'" name="password2" placeholder="Retype password"/>
+                <div th:if="${password2Error}" class="invalid-feedback" th:text="${password2Error}"></div>
             </div>
         </div>
         <div class="form-group row" th:if="${path} == '/registration'">
             <label class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-6">
-                <input type="email" class="form-control" name="email" placeholder="mail@mail.com"/>
+                <input type="email" class="form-control" th:classappend="${emailError} ? ' is-invalid'" name="email" th:value="${user} ? ${user.email} : ''" placeholder="mail@mail.com"/>
+                <div th:if="${emailError}" class="invalid-feedback" th:text="${emailError}"></div>
             </div>
         </div>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

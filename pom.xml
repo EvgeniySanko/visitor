@@ -22,6 +22,8 @@
         <persistence.version>2.2</persistence.version>
         <hibernate.version>5.4.5.Final</hibernate.version>
         <security.version>5.1.6.RELEASE</security.version>
+        <validation.version>2.0.1.Final</validation.version>
+        <hibernateValidation.version>6.1.0.Alpha6</hibernateValidation.version>
     </properties>
     <dependencies>
         <!-- Spring dependencies-->
@@ -112,6 +114,17 @@
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4</version>
+        </dependency>
+        <!-- Validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${validation.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernateValidation.version}</version>
         </dependency>
     </dependencies>
 

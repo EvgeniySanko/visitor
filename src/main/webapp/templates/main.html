@@ -17,14 +17,16 @@
     <a class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false" aria-controls="collapseExample">
         Add new message
     </a>
-    <div class="collapse" id="messageForm">
+    <div class="collapse" id="messageForm" th:classappend="${message} ? ' show'">
         <div class="form-group mt-3">
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="text" placeholder="Введите сообщение"/>
+                    <input class="form-control" th:classappend="${textError} ? ' is-invalid'" type="text" name="text" th:value="${message} ? ${message.text} : ''" placeholder="Введите сообщение"/>
+                    <div th:if="${textError}" class="invalid-feedback" th:text="${textError}"></div>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="tag" placeholder="Тэг"/>
+                    <input class="form-control" th:classappend="${tagError} ? ' is-invalid'" type="text" name="tag" th:value="${message} ? ${message.tag} : ''" placeholder="Тэг"/>
+                    <div th:if="${tagError}" class="invalid-feedback" th:text="${tagError}"></div>
                 </div>
                 <div class="form-group">
                     <div class="custom-file">

@@ -4,7 +4,10 @@
 <body>
 <div th:insert="~{fragments/common :: scripts}"></div>
 <div th:replace="fragments/common :: navbar"></div>
+
 <div class="container mt-5">
+    <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']}" class="alert alert-danger col-sm-8" role="alert">Bad credentials</div>
+    <div th:if="${messageType}" class="alert" th:classappend="${messageType} + ' col-sm-8'" th:text="${message}" role="alert"></div>
     <div th:replace="fragments/login :: login(path=${'/login'}, submitValue=${'Sign in'})"></div></br>
     <a href="/registration">Sign up</a>
 </div>

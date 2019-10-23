@@ -1,13 +1,20 @@
 package com.sanko.visitor.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "Please, fill the message")
+    @Size(max = 2048, message = "Message too long")
     private String text;
+    @NotBlank(message = "Please, fill the tag")
+    @Size(max = 255, message = "Tag too long")
     private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)
