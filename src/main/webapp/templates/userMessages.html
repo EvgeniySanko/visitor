@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head"></head>
+<body>
+<div th:insert="~{fragments/common :: scripts}"></div>
+<div th:replace="fragments/common :: navbar"></div>
+<div class="container mt-5">
+    <!--/*@thymesVar id="isCurrentUser" type="java.lang.Boolean"*/-->
+    <div th:if="${isCurrentUser}" th:insert="~{fragments/messageEdit :: editForm}"/>
+    <br>
+    <br>
+    <div th:insert="~{fragments/messageList :: messageList}"/>
+</div>
+</body>
+</html>

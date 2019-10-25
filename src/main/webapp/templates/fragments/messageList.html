@@ -1,0 +1,21 @@
+<div th:fragment="messageList" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <div class="card-columns">
+        <!--/*@thymesVar id="message" type="com.sanko.visitor.entities.Message"*/-->
+        <!--/*@thymesVar id="messages" type="java.util.List"*/-->
+        <div class="card my-3" th:each="message : ${messages}">
+            <div th:if="${message.filename}">
+                <img src="/img/" th:attr="src='/img/' + ${message.filename }" class="card-img-top">
+            </div>
+            <div class="m-2">
+                <span th:text="${message.text}"/></br>
+                <i th:text="'#' + ${message.tag}"/>
+            </div>
+            <div class="card-footer text-muted">
+                <a th:href="'/userMessages/' + ${message.author.id}" th:text="${message.authorName}"/>
+                <a th:if="${message.author.id} == ${#authentication.getPrincipal().id}" class="btn btn-primary" th:href="'/userMessages/' + ${message.author.id} + '?messageId=' + ${message.id}">
+                    Edit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

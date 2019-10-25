@@ -14,50 +14,10 @@
             </form>
         </div>
     </div>
-    <a class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Add new message
-    </a>
-    <div class="collapse" id="messageForm" th:classappend="${message} ? ' show'">
-        <div class="form-group mt-3">
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input class="form-control" th:classappend="${textError} ? ' is-invalid'" type="text" name="text" th:value="${message} ? ${message.text} : ''" placeholder="Введите сообщение"/>
-                    <div th:if="${textError}" class="invalid-feedback" th:text="${textError}"></div>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" th:classappend="${tagError} ? ' is-invalid'" type="text" name="tag" th:value="${message} ? ${message.tag} : ''" placeholder="Тэг"/>
-                    <div th:if="${tagError}" class="invalid-feedback" th:text="${tagError}"></div>
-                </div>
-                <div class="form-group">
-                    <div class="custom-file">
-                        <input id="customFile" type="file" name="file">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-                    </div>
-                </div>
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <div class="form-group">
-                    <button class="btn btn-primary ml-2" type="submit">Add</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <div th:insert="~{fragments/messageEdit :: editForm}"/>
     <br>
     <br>
-    <!--/*@thymesVar id="messages" type="java.util.List"*/-->
-   <div class="card-columns">
-       <div class="card my-3" th:each="message : ${messages}">
-           <div th:if="${message.filename}">
-               <img src="/img/" th:attr="src='/img/' + ${message.filename}" class="card-img-top">
-           </div>
-           <div class="m-2">
-               <span th:text="${message.text}"/>
-               <i th:text="${message.tag}"/>
-           </div>
-           <div class="card-footer text-muted">
-               <span th:text="${message.getAuthorName()}"/>
-           </div>
-       </div>
-   </div>
+   <div th:insert="~{fragments/messageList :: messageList}"/>
 </div>
 </body>
 </html>
