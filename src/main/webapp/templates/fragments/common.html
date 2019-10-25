@@ -33,7 +33,7 @@
                     <a class="nav-link" href="/user">Users list</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item active">
-                    <a class="nav-link" href="/user/profile">Profile</a>
+                    <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item active">
                     <a class="nav-link"  th:href="'/userMessages/'+ ${#authentication.getPrincipal().id}">My messages</a>
