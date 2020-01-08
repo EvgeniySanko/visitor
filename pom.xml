@@ -23,7 +23,7 @@
         <hibernate.version>5.4.5.Final</hibernate.version>
         <security.version>5.1.6.RELEASE</security.version>
         <validation.version>2.0.1.Final</validation.version>
-        <hibernateValidation.version>6.1.0.Alpha6</hibernateValidation.version>
+        <hibernateValidation.version>6.1.0.Final</hibernateValidation.version>
     </properties>
     <dependencies>
         <!-- Spring dependencies-->
