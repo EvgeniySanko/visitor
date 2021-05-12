@@ -21,7 +21,7 @@
         <jpa.version>2.1.10.RELEASE</jpa.version>
         <persistence.version>2.2</persistence.version>
         <hibernate.version>5.4.5.Final</hibernate.version>
-        <security.version>5.1.6.RELEASE</security.version>
+        <security.version>5.2.10.RELEASE</security.version>
         <validation.version>2.0.1.Final</validation.version>
         <hibernateValidation.version>6.1.0.Alpha6</hibernateValidation.version>
     </properties>
